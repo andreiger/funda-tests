@@ -52,6 +52,19 @@ namespace Framework
             Eur2000000 = 3
         }
 
+        public static void InsertParameters(string plaats, Kms Kms, KoopprijsVan KoopprijsVan, KoopprijsTot KoopprijsTot)
+        {
+            UITools.SendKeys((By.Id("autocomplete-input")), plaats);
+            var kms = UITools.GetEnumDescription(Kms);
+            var koopprijsVan = UITools.GetEnumDescription(KoopprijsVan);
+            var koopprijsTot = UITools.GetEnumDescription(KoopprijsTot);
+            UITools.SelectFromDropdown(Driver.Instance.FindElement(By.Id("Straal")), kms);
+            UITools.SelectFromDropdown(Driver.Instance.FindElement(By.Id("range-filter-selector-select-filter_koopprijsvan")), koopprijsVan);
+            UITools.SelectFromDropdown(Driver.Instance.FindElement(By.Id("range-filter-selector-select-filter_koopprijstot")), koopprijsTot);
+            UITools.ClickFirstElement((By.ClassName("button-primary-alternative")));
+            Driver.Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
+        }
+
         public static void Plaats(string plaats)
         {
             Driver.Wait(1);
@@ -98,10 +111,7 @@ namespace Framework
         // Generic method to choose a country in the "Kies een land" dropdown on the Europa page
         public static void KiesEenLand(string chooseCountry)
         {
-            //SelectElement oSelect = new SelectElement(Driver.Instance.FindElement(By.XPath(@"//*[@id=""content""]/div[1]/div[3]/form/div[1]/div/fieldset/div")));
-            //oSelect.SelectByValue(chooseCountry);
-
-            SelectElement oSelect = new SelectElement(Driver.Instance.FindElement(By.ClassName("search-dropdown custom-select")));
+            SelectElement oSelect = new SelectElement(Driver.Instance.FindElement(By.XPath(".//*[@class='search-dropdown custom-select']")));
             oSelect.SelectByValue(chooseCountry);
         }
 
@@ -113,13 +123,11 @@ namespace Framework
         }
 
         // Generic method to assert parameters in URL
-        public static bool HasFound(string plaats, Kms Kms, KoopprijsVan KoopprijsVan, KoopprijsTot KoopprijsTot)
+        public static bool HasFound(string plaats)
         {
-            var km = UITools.GetEnumDescription(Kms);
-            var koopprijsVan = UITools.GetEnumDescription(KoopprijsVan);
-            var koopprijsTot = UITools.GetEnumDescription(KoopprijsTot);
-
-            if (Driver.Instance.Url.Contains(plaats) & Driver.Instance.Url.Contains(km) & Driver.Instance.Url.Contains(koopprijsVan) & Driver.Instance.Url.Contains(koopprijsTot)) return true;
+            var url = Driver.Instance.Url;
+            var plaats1 = plaats.ToLower();
+            if (url.Contains(plaats1)) return true;
             else return false;
         }
     }

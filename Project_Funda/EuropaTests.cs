@@ -11,6 +11,15 @@ namespace Tests
     [TestClass]
     public class EuropaTests : BaseTests
     {
-
+        // Test to search in the "Europa" page for België and range 1
+        [TestMethod]
+        public void GoToRecreatieAndSearchForDenHaagAndRangeOne()
+        {
+            PageActions.GoTo(PageActions.Pages.europe);
+            Search.KiesEenLand("belgie");
+            Search.SelectRange("1");
+            Search.Zoek();
+            Assert.IsTrue(Search.HasFound("belgie"));
+        }
     }
 }

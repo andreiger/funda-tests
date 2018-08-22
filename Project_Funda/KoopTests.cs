@@ -13,28 +13,30 @@ namespace Tests
     {
         // Test to search in the "Koop" page for Amsterdam
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdam()
+        public void GoToKoopAndSearchFor_Amsterdam()
         {
             PageActions.GoTo(PageActions.Pages.koop);
             Search.Plaats("Amsterdam");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Koop" page for Amsterdam & min values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMinValuesDropdowns()
+        public void GoToKoopAndSearchFor_AmsterdamMinValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.koop);
             Search.Plaats("Amsterdam");
             Search.SelectRange("1");
             Search.KoopSelectVan("50000");
             Search.KoopSelectTot("50000");
-            Search.Zoek();        
+            Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Koop" page for Amsterdam & max values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMaxValuesDropdowns()
+        public void GoToKoopAndSearchFor_AmsterdamMaxValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.koop);
             Search.Plaats("Amsterdam");
@@ -42,11 +44,12 @@ namespace Tests
             Search.KoopSelectVan("2000000");
             Search.KoopSelectTot("2000000");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Koop" page for Amsterdam & mid values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMidValuesDropdowns()
+        public void GoToKoopAndSearchFor_Amsterdam_MidValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.koop);
             Search.Plaats("Amsterdam");
@@ -54,11 +57,12 @@ namespace Tests
             Search.KoopSelectVan("500000");
             Search.KoopSelectTot("500000");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Koop" page for Amsterdam & mid/max values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMidMaxValuesDropdowns()
+        public void GoToKoopAndSearchFor_Amsterdam_MidMaxValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.koop);
             Search.Plaats("Amsterdam");
@@ -66,16 +70,17 @@ namespace Tests
             Search.KoopSelectVan("50000");
             Search.KoopSelectTot("2000000");
             Search.Zoek();
-            Assert.IsTrue(Search.HasFound("Amsterdam", Search.Kms.km10, Search.KoopprijsVan.Eur50000, Search.KoopprijsTot.Eur2000000));
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Koop" page for Tilburg
         [TestMethod]
-        public void GoToKoopAndSearchForTilburg()
+        public void GoToKoopAndSearchFor_Tilburg()
         {
             PageActions.GoTo(PageActions.Pages.koop);
             Search.Plaats("Tilburg");
-            Search.Zoek();  
+            Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Tilburg"));
         }
     }
 }

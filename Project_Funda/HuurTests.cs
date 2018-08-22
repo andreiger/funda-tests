@@ -13,16 +13,17 @@ namespace Tests
     {
         // Test to search in the "Huur" page for Amsterdam
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdam()
+        public void GoToHuurAndSearchFor_Amsterdam()
         {
             PageActions.GoTo(PageActions.Pages.huur);
             Search.Plaats("Amsterdam");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Huur" page for Amsterdam & min values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMinValuesDropdowns()
+        public void GoToHuurAndSearchFor_AmsterdamMinValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.huur);
             Search.Plaats("Amsterdam");
@@ -30,11 +31,12 @@ namespace Tests
             Search.HuurSelectVan("50000");
             Search.HuurSelectTot("50000");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Huur" page for Amsterdam & max values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMaxValuesDropdowns()
+        public void GoToHuurAndSearchFor_AmsterdamMaxValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.huur);
             Search.Plaats("Amsterdam");
@@ -42,11 +44,12 @@ namespace Tests
             Search.HuurSelectVan("2000000");
             Search.HuurSelectTot("2000000");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Huur" page for Amsterdam & mid values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMidValuesDropdowns()
+        public void GoToHuurAndSearchFor_AmsterdamMidValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.huur);
             Search.Plaats("Amsterdam");
@@ -54,11 +57,12 @@ namespace Tests
             Search.HuurSelectVan("100");
             Search.HuurSelectTot("500");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Huur" page for Amsterdam & combination of values in dropdown filters
         [TestMethod]
-        public void GoToKoopAndSearchForAmsterdamMinMaxValuesDropdowns()
+        public void GoToHuurAndSearchFor_AmsterdamMinMaxValuesDropdowns()
         {
             PageActions.GoTo(PageActions.Pages.huur);
             Search.Plaats("Amsterdam");
@@ -66,16 +70,17 @@ namespace Tests
             Search.HuurSelectVan("500");
             Search.HuurSelectTot("1000");
             Search.Zoek();
-            Assert.IsTrue(Search.HasFound("Amsterdam", Search.Kms.km10, Search.KoopprijsVan.Eur50000, Search.KoopprijsTot.Eur2000000));
+            Assert.IsTrue(Search.HasFound("Amsterdam"));
         }
 
         // Test to search in the "Huur" page for Tilburg
         [TestMethod]
-        public void GoToKoopAndSearchForTilburg()
+        public void GoToHuurAndSearchFor_Tilburg()
         {
             PageActions.GoTo(PageActions.Pages.huur);
             Search.Plaats("Tilburg");
             Search.Zoek();
+            Assert.IsTrue(Search.HasFound("Tilburg"));
         }
     }
 }
